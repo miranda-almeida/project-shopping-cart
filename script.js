@@ -1,4 +1,4 @@
-const { fetchProducts } = require('./helpers/fetchProducts');
+// const { fetchProducts } = require('./helpers/fetchProducts');
 // const createProductImageElement = (imageSource) => {
 //   const img = document.createElement('img');
 //   img.className = 'item__image';
@@ -13,26 +13,26 @@ const { fetchProducts } = require('./helpers/fetchProducts');
 //   return e;
 // };
 
-const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
-  const section = document.createElement('section');
-  section.className = 'item';
+// const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
+//   const section = document.createElement('section');
+//   section.className = 'item';
 
-  section.appendChild(createCustomElement('span', 'item__sku', sku));
-  section.appendChild(createCustomElement('span', 'item__title', name));
-  section.appendChild(createProductImageElement(image));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+//   section.appendChild(createCustomElement('span', 'item__sku', sku));
+//   section.appendChild(createCustomElement('span', 'item__title', name));
+//   section.appendChild(createProductImageElement(image));
+//   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
 
-  return section;
-};
+//   return section;
+// };
 
-const renderItem = async () => {
-  const items = document.getElementsByClassName('item');
-  const { returns } = await fetchProducts();
-  returns.forEach((item) => {
-    const loadItem = createProductItemElement(item);
-    items.appendChild(loadItem);
-  });
-};
+// const renderItem = async () => {
+//   const items = document.getElementsByClassName('item');
+//   const { returns } = await fetchProducts();
+//   returns.forEach((item) => {
+//     const loadItem = createProductItemElement(item);
+//     items.appendChild(loadItem);
+//   });
+// };
 
 // const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
@@ -48,6 +48,6 @@ const renderItem = async () => {
 //   return li;
 // };
 
-window.onload = () => {
-  renderItem();
-};
+// window.onload = async () => {
+//   await renderItem();
+// };
