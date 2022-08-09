@@ -1,34 +1,39 @@
-// const { fetchProducts } = require('./helpers/fetchProducts');
-// // const createProductImageElement = (imageSource) => {
-// //   const img = document.createElement('img');
-// //   img.className = 'item__image';
-// //   img.src = imageSource;
-// //   return img;
-// // };
-
-// // const createCustomElement = (element, className, innerText) => {
-// //   const e = document.createElement(element);
-// //   e.className = className;
-// //   e.innerText = innerText;
-// //   return e;
-// // };
-
-// const createProductItemElement = ({ sku, name, image }) => {
-//   fetchProducts().then(() => {
-//       const { id } = sku;
-//       const { title } = name;
-//       const { thumbnail } = image;
-//     });
-//   const section = document.createElement('section');
-//   section.className = 'item';
-
-//   section.appendChild(createCustomElement('span', 'item__sku', sku));
-//   section.appendChild(createCustomElement('span', 'item__title', name));
-//   section.appendChild(createProductImageElement(image));
-//   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
-//   return section;
+const { create } = require('mochawesome-report-generator');
+const { fetchProducts } = require('./helpers/fetchProducts');
+// const createProductImageElement = (imageSource) => {
+//   const img = document.createElement('img');
+//   img.className = 'item__image';
+//   img.src = imageSource;
+//   return img;
 // };
+
+// const createCustomElement = (element, className, innerText) => {
+//   const e = document.createElement(element);
+//   e.className = className;
+//   e.innerText = innerText;
+//   return e;
+// };
+
+const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
+  const section = document.createElement('section');
+  section.className = 'item';
+
+  section.appendChild(createCustomElement('span', 'item__sku', sku));
+  section.appendChild(createCustomElement('span', 'item__title', name));
+  section.appendChild(createProductImageElement(image));
+  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+
+  return section;
+};
+
+const renderItem = async () => {
+  const items = document.getElementsByClassName('item');
+  const { returns } = await fetchProducts();
+  returns.forEach((item) => {
+    const loadItem = createProductItemElement(item);
+    items.appendChild(loadItem);
+  });
+};
 
 // const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
@@ -44,4 +49,6 @@
 //   return li;
 // };
 
-window.onload = () => { };
+window.onload = async () => {
+  await renderItem();
+};
