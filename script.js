@@ -1,18 +1,24 @@
-// const createProductImageElement = (imageSource) => {
-//   const img = document.createElement('img');
-//   img.className = 'item__image';
-//   img.src = imageSource;
-//   return img;
-// };
+// const { fetchProducts } = require('./helpers/fetchProducts');
+// // const createProductImageElement = (imageSource) => {
+// //   const img = document.createElement('img');
+// //   img.className = 'item__image';
+// //   img.src = imageSource;
+// //   return img;
+// // };
 
-// const createCustomElement = (element, className, innerText) => {
-//   const e = document.createElement(element);
-//   e.className = className;
-//   e.innerText = innerText;
-//   return e;
-// };
+// // const createCustomElement = (element, className, innerText) => {
+// //   const e = document.createElement(element);
+// //   e.className = className;
+// //   e.innerText = innerText;
+// //   return e;
+// // };
 
 // const createProductItemElement = ({ sku, name, image }) => {
+//   fetchProducts().then(() => {
+//       const { id } = sku;
+//       const { title } = name;
+//       const { thumbnail } = image;
+//     });
 //   const section = document.createElement('section');
 //   section.className = 'item';
 
