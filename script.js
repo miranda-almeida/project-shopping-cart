@@ -48,6 +48,6 @@ const renderItem = async () => {
 //   return li;
 // };
 
-// window.onload = async () => {
-//   await renderItem();
-// };
+window.onload = async () => {
+  await renderItem();
+};
