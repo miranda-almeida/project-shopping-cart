@@ -3,7 +3,7 @@ const fetchProducts = async () => {
   const { results } = response.json();
   return results;
 };
-fetchProducts();
+
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchProducts,
