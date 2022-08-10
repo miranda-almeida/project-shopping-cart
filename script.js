@@ -17,19 +17,22 @@ const createCustomElement = (element, className, innerText) => {
 // captura o identificador único de cada produto (sku)
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-// const cartItemClickListener = (event) => {
-
-// };
-
 // declarando a lista ordenada do carrinho de compras no escopo global para facilitar o uso em múltiplas funções
 const orderedList = document.querySelector('.cart__items');
+
+/* remove item clicado do carrinho, onde a tag <li> do item (child) é retirada da tag <ol> que a encapsula (parent)
+referência: https://www.w3schools.com/jsref/met_node_removechild.asp
+*/
+const cartItemClickListener = (event) => {
+  orderedList.removeChild(event.target);
+};
 
 // configura as informações dos itens selecionados para o carrinho (com identificador, nome e preço)
 const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  // li.addEventListener('click', cartItemClickListener);
+  li.addEventListener('click', cartItemClickListener);
   return li;
 };
 
@@ -38,7 +41,7 @@ const createCart = async (event) => {
   const sku = getSkuFromProductItem(event.target.parentElement);
   const results = await fetchItem(sku);
   const { title, price } = results;
-  const productCart = { sku, title, price };
+  const productCart = { id: sku, title, price };
   orderedList.appendChild(createCartItemElement(productCart));
 };
 
