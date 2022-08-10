@@ -1,16 +1,16 @@
-// const createProductImageElement = (imageSource) => {
-//   const img = document.createElement('img');
-//   img.className = 'item__image';
-//   img.src = imageSource;
-//   return img;
-// };
+const createProductImageElement = (imageSource) => {
+  const img = document.createElement('img');
+  img.className = 'item__image';
+  img.src = imageSource;
+  return img;
+};
 
-// const createCustomElement = (element, className, innerText) => {
-//   const e = document.createElement(element);
-//   e.className = className;
-//   e.innerText = innerText;
-//   return e;
-// };
+const createCustomElement = (element, className, innerText) => {
+  const e = document.createElement(element);
+  e.className = className;
+  e.innerText = innerText;
+  return e;
+};
 
 const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
   const section = document.createElement('section');
@@ -24,12 +24,12 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
   return section;
 };
 
-const renderItem = async () => {
-  const items = document.getElementsByClassName('item');
-  const { returns } = await fetchProducts();
-  returns.forEach((item) => {
-    const loadItem = createProductItemElement(item);
-    items.appendChild(loadItem);
+const renderProducts = async () => {
+  const { results } = await fetchProducts('computador');
+  const section = document.querySelector('.items');
+  results.forEach((product) => {
+    const generateCards = createProductItemElement(product);
+    section.appendChild(generateCards);
   });
 };
 
@@ -39,7 +39,7 @@ const renderItem = async () => {
 //   // coloque seu código aqui
 // };
 
-// const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
+// const createCartItemElement = ({ sku, name, salePrice }) => {
 //   const li = document.createElement('li');
 //   li.className = 'cart__item';
 //   li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
@@ -47,6 +47,6 @@ const renderItem = async () => {
 //   return li;
 // };
 
-window.onload = async () => {
-  await renderItem();
+window.onload = () => {
+  renderProducts();
 };
