@@ -10,6 +10,21 @@ const orderedList = document.querySelector('.cart__items');
 //   saveCartItems('cartItem', item);
 //   // renderSave();
 // };
+
+// declara o botão de esvaziar carrinho e adiciona position absolute no css da classe do mesmo para visualizar botão após adicionar itens ao carrinho
+const buttonClear = document.querySelector('.empty-cart');
+buttonClear.style.position = 'absolute';
+
+// define função para limpar todas as <li> da lista ordenada. ref: https://attacomsian.com/blog/javascript-dom-remove-all-children-of-an-element
+const clearCart = () => {
+  while (orderedList.lastChild) {
+    orderedList.removeChild(orderedList.lastChild);
+  }
+};
+
+// adiciona evento ao botão de limpar carrinho
+buttonClear.addEventListener('click', clearCart);
+
 // captura e reproduz imagens de produtos
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -52,7 +67,7 @@ const createCart = async (event) => {
   const { title, price } = results;
   const productCart = { id: sku, title, price };
   orderedList.appendChild(createCartItemElement(productCart));
-  saveLocal(createCart);
+  // saveLocal(createCart);
 };
 
 // cria e anexa as informações do elemento do produto com sku, nome e imagem na listagem de produtos
